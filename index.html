@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Prototype Prodecta — app web immersive inspirée Ferrari au-dessus d’une visite virtuelle Matterport." />
+  <title>Ferrari Immersive Showroom — Prodecta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell" data-panel="experience" data-rail="open">
+    <div class="tour-layer" aria-hidden="true">
+      <!-- Remplacer le src par le lien Matterport client dès qu’il est disponible. -->
+      <iframe
+        class="matterport-frame"
+        title="Visite virtuelle immersive"
+        src="about:blank"
+        allow="fullscreen; vr; xr-spatial-tracking"
+      ></iframe>
+      <div class="matterport-fallback">
+        <div class="showroom-depth"></div>
+        <div class="showroom-grid"></div>
+        <div class="showroom-wall wall-red"><span></span></div>
+        <div class="showroom-wall wall-glass"></div>
+        <div class="showroom-car car-blue"></div>
+        <div class="showroom-car car-red"></div>
+        <div class="showroom-hotspot h1"></div>
+        <div class="showroom-hotspot h2"></div>
+        <div class="showroom-hotspot h3"></div>
+      </div>
+      <div class="tour-vignette"></div>
+      <div class="ambient-glow"></div>
+    </div>
+
+    <aside class="brand-rail" aria-label="Menu Ferrari Immersive Showroom">
+      <div class="rail-top">
+        <div class="brand-lockup">
+          <div class="prancing-mark" aria-hidden="true">♞</div>
+          <div>
+            <p class="brand-name">Ferrari</p>
+            <p class="brand-subtitle">Immersive Showroom</p>
+          </div>
+        </div>
+        <button class="rail-close" type="button" aria-label="Réduire le menu">
+          <span></span>
+        </button>
+      </div>
+
+      <nav class="tabs" aria-label="Navigation principale">
+        <button class="tab is-active" data-tab="experience" type="button">
+          <span class="tab-icon">⌁</span>
+          <span>Expérience</span>
+        </button>
+        <button class="tab" data-tab="models" type="button">
+          <span class="tab-icon">◇</span>
+          <span>Modèles</span>
+        </button>
+        <button class="tab" data-tab="atelier" type="button">
+          <span class="tab-icon">✣</span>
+          <span>Atelier</span>
+        </button>
+        <button class="tab" data-tab="heritage" type="button">
+          <span class="tab-icon">◷</span>
+          <span>Héritage</span>
+        </button>
+        <button class="tab" data-tab="services" type="button">
+          <span class="tab-icon">✦</span>
+          <span>Services</span>
+        </button>
+        <button class="tab" data-tab="contact" type="button">
+          <span class="tab-icon">↗</span>
+          <span>Contact</span>
+        </button>
+      </nav>
+
+      <div class="panel-stack">
+        <section class="panel is-active" data-content="experience">
+          <div class="eyebrow">Maranello Experience</div>
+          <h1>Entrez dans l’univers Ferrari</h1>
+          <p class="lead">Explorez le showroom, découvrez les modèles et préparez votre expérience sur mesure depuis une visite immersive enrichie.</p>
+
+          <div class="hero-card reveal-card">
+            <div class="hero-car"></div>
+            <div class="hero-copy">
+              <span class="mini-badge">Privé</span>
+              <h2>Showroom augmenté</h2>
+              <p>Une interface cockpit qui transforme la visite virtuelle en expérience de marque.</p>
+            </div>
+          </div>
+
+          <div class="quick-grid">
+            <button class="quick-card reveal-card" type="button">
+              <span>01</span>
+              <strong>Showroom</strong>
+              <em>Parcours guidé</em>
+            </button>
+            <button class="quick-card reveal-card" type="button">
+              <span>02</span>
+              <strong>Essai privé</strong>
+              <em>Réservation rapide</em>
+            </button>
+            <button class="quick-card reveal-card" type="button">
+              <span>03</span>
+              <strong>Atelier</strong>
+              <em>Service officiel</em>
+            </button>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-row reveal-card"><span>1947</span><p>Première Ferrari 125 S</p></div>
+            <div class="timeline-row reveal-card"><span>Maranello</span><p>Berceau de la marque</p></div>
+            <div class="timeline-row reveal-card"><span>Racing DNA</span><p>Héritage compétition</p></div>
+            <div class="timeline-row reveal-card"><span>Tailor Made</span><p>Personnalisation exclusive</p></div>
+          </div>
+        </section>
+
+        <section class="panel" data-content="models">
+          <div class="eyebrow">La gamme Ferrari</div>
+          <h1>Performance, ligne, émotion</h1>
+          <p class="lead">Des fiches modèles pensées comme des cartes de configuration rapides, sans quitter la visite immersive.</p>
+
+          <div class="model-list">
+            <article class="model-card reveal-card">
+              <div class="model-visual red"></div>
+              <div class="model-meta">
+                <div><span class="mini-badge">hybrid</span><span class="mini-badge">V6</span></div>
+                <h2>296 GTB</h2>
+                <p>Berlinetta hybride compacte, précise, radicale.</p>
+                <div class="spec-line"><span>830 ch</span><span>2.9 s</span><span>330 km/h</span></div>
+              </div>
+              <button aria-label="Découvrir Ferrari 296 GTB">→</button>
+            </article>
+
+            <article class="model-card reveal-card">
+              <div class="model-visual dark"></div>
+              <div class="model-meta">
+                <div><span class="mini-badge">hybrid</span><span class="mini-badge">V8</span></div>
+                <h2>SF90 Stradale</h2>
+                <p>Puissance extrême et technologie issue de la piste.</p>
+                <div class="spec-line"><span>1000 ch</span><span>2.5 s</span><span>340 km/h</span></div>
+              </div>
+              <button aria-label="Découvrir Ferrari SF90 Stradale">→</button>
+            </article>
+
+            <article class="model-card reveal-card">
+              <div class="model-visual ivory"></div>
+              <div class="model-meta">
+                <div><span class="mini-badge">spider</span><span class="mini-badge">V8</span></div>
+                <h2>Roma Spider</h2>
+                <p>Grand tourisme, élégance italienne, plaisir ouvert.</p>
+                <div class="spec-line"><span>620 ch</span><span>3.4 s</span><span>320 km/h</span></div>
+              </div>
+              <button aria-label="Découvrir Ferrari Roma Spider">→</button>
+            </article>
+
+            <article class="model-card reveal-card">
+              <div class="model-visual yellow"></div>
+              <div class="model-meta">
+                <div><span class="mini-badge">GT</span><span class="mini-badge">V12</span></div>
+                <h2>Purosangue</h2>
+                <p>Quatre places, présence sculpturale, moteur V12.</p>
+                <div class="spec-line"><span>725 ch</span><span>3.3 s</span><span>310 km/h</span></div>
+              </div>
+              <button aria-label="Découvrir Ferrari Purosangue">→</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel" data-content="atelier">
+          <div class="eyebrow">Atelier & Tailor Made</div>
+          <h1>La matière devient signature</h1>
+          <p class="lead">Cuir, carbone, jantes, teintes et détails intérieurs : chaque choix devient un moment de projection.</p>
+          <div class="material-grid">
+            <article class="material-card leather reveal-card"><span>Cuir</span><strong>Sellerie pleine fleur</strong></article>
+            <article class="material-card carbon reveal-card"><span>Carbone</span><strong>Fibre apparente</strong></article>
+            <article class="material-card wheels reveal-card"><span>Jantes</span><strong>Forgées ou diamantées</strong></article>
+            <article class="material-card colors reveal-card"><span>Couleurs</span><strong>Rosso, Nero, Giallo</strong></article>
+            <article class="material-card bespoke reveal-card"><span>Sur-mesure</span><strong>Programme Tailor Made</strong></article>
+          </div>
+        </section>
+
+        <section class="panel" data-content="heritage">
+          <div class="eyebrow">Héritage</div>
+          <h1>Une histoire écrite entre route et circuit</h1>
+          <p class="lead">Un format éditorial premium pour enrichir la visite avec culture de marque, archives et moments fondateurs.</p>
+          <div class="heritage-editorial reveal-card">
+            <div class="heritage-photo"></div>
+            <div>
+              <span>Depuis 1947</span>
+              <h2>La performance comme langage</h2>
+              <p>De Maranello aux circuits internationaux, chaque modèle porte une mémoire mécanique et émotionnelle.</p>
+            </div>
+          </div>
+          <div class="heritage-years">
+            <div class="reveal-card"><strong>1947</strong><span>125 S</span></div>
+            <div class="reveal-card"><strong>1962</strong><span>250 GTO</span></div>
+            <div class="reveal-card"><strong>1987</strong><span>F40</span></div>
+            <div class="reveal-card"><strong>2002</strong><span>Enzo</span></div>
+          </div>
+        </section>
+
+        <section class="panel" data-content="services">
+          <div class="eyebrow">Services propriétaires</div>
+          <h1>Un suivi à la hauteur de la machine</h1>
+          <p class="lead">L’expérience immersive devient aussi un point d’entrée vers l’entretien, l’assistance et la relation conseiller.</p>
+          <div class="service-list">
+            <button class="service-row reveal-card" type="button"><span>01</span><strong>Rendez-vous atelier</strong><em>Planifier</em></button>
+            <button class="service-row reveal-card" type="button"><span>02</span><strong>Entretien officiel</strong><em>Découvrir</em></button>
+            <button class="service-row reveal-card" type="button"><span>03</span><strong>Assistance</strong><em>Contacter</em></button>
+            <button class="service-row reveal-card" type="button"><span>04</span><strong>Certification</strong><em>Vérifier</em></button>
+          </div>
+        </section>
+
+        <section class="panel" data-content="contact">
+          <div class="eyebrow">Conciergerie Ferrari</div>
+          <h1>Préparer votre expérience privée</h1>
+          <p class="lead">Un espace de conversion premium : essai, rappel, rendez-vous showroom ou demande personnalisée.</p>
+          <div class="contact-card reveal-card">
+            <label>Votre demande</label>
+            <div class="choice-row">
+              <button type="button" class="is-selected">Essai privé</button>
+              <button type="button">Configuration</button>
+              <button type="button">Atelier</button>
+            </div>
+            <a class="primary-wide" href="mailto:contact@prodecta.fr">Être rappelé</a>
+            <p class="hours">Lun. — Sam. · 09:00 — 19:00<br>Showroom Ferrari · Paris / Maranello Experience</p>
+          </div>
+        </section>
+      </div>
+
+      <footer class="rail-footer">
+        <button type="button">Mentions légales</button>
+        <button type="button">Confidentialité</button>
+        <button type="button">FR ▾</button>
+        <span class="italian-line"><i></i><i></i><i></i></span>
+      </footer>
+    </aside>
+
+    <button class="rail-open" type="button" aria-label="Ouvrir le menu">
+      <span>☰</span>
+      <strong>Menu</strong>
+    </button>
+
+    <header class="top-dock" aria-label="Outils visite virtuelle">
+      <button class="dock-item is-active" type="button"><span>◆</span>Visite</button>
+      <button class="dock-item" type="button"><span>□</span>Plan</button>
+      <button class="dock-item" type="button"><span>◎</span>Points d’intérêt</button>
+      <button class="dock-item" type="button"><span>?</span>Aide</button>
+      <button class="dock-item" type="button"><span>⌯</span>Partager</button>
+      <button class="dock-icon" type="button" aria-label="Plein écran">⛶</button>
+      <button class="dock-lang" type="button">FR</button>
+    </header>
+
+    <a class="main-cta" href="mailto:contact@prodecta.fr">
+      <span>Réserver un essai</span>
+      <i>→</i>
+    </a>
+
+    <button class="advisor" type="button" aria-label="Contacter votre conseiller Ferrari">
+      <span class="advisor-dot"></span>
+      <strong>Votre conseiller Ferrari</strong>
+      <em>Disponible</em>
+    </button>
+
+    <div class="drive-controls" aria-label="Contrôles de visite">
+      <button type="button">↑</button>
+      <button type="button">←</button>
+      <button type="button" class="control-core">◌</button>
+      <button type="button">→</button>
+      <button type="button">↓</button>
+      <button type="button" class="next-control">»</button>
+    </div>
+
+    <div class="mobile-sheet" aria-label="Menu mobile">
+      <button class="sheet-handle" type="button"><span></span></button>
+      <div class="mobile-brand">
+        <div>
+          <strong>Ferrari</strong>
+          <span>Immersive Showroom</span>
+        </div>
+        <button class="sheet-toggle" type="button">Réduire</button>
+      </div>
+      <div class="mobile-tabs">
+        <button class="is-active" data-tab="experience" type="button">Expérience</button>
+        <button data-tab="models" type="button">Modèles</button>
+        <button data-tab="atelier" type="button">Atelier</button>
+        <button data-tab="heritage" type="button">Héritage</button>
+        <button data-tab="services" type="button">Services</button>
+        <button data-tab="contact" type="button">Contact</button>
+      </div>
+      <div class="mobile-copy">
+        <p class="mobile-kicker">Maranello Experience</p>
+        <h2>Explorez le showroom en visite immersive.</h2>
+        <p>Découvrez les modèles, les services et réservez une expérience privée sans quitter la visite.</p>
+      </div>
+      <a href="mailto:contact@prodecta.fr" class="mobile-cta">Réserver un essai</a>
+    </div>
+
+    <div class="prodecta-signature">BY <strong>PRODECTA</strong></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
