@@ -8,6 +8,7 @@ const sheet = document.querySelector('.mobile-sheet');
 const sheetToggle = document.querySelector('.sheet-toggle');
 const sheetHandle = document.querySelector('.sheet-handle');
 const mobileCopy = document.querySelector('.mobile-copy');
+const configureCover = document.querySelector('.configure-cover');
 
 const copyByPanel = {
   experience: {
@@ -106,6 +107,11 @@ function toggleSheet() {
 sheetToggle?.addEventListener('click', toggleSheet);
 sheetHandle?.addEventListener('click', toggleSheet);
 
+configureCover?.addEventListener('click', () => {
+  app.dataset.rail = 'open';
+  activatePanel('atelier');
+});
+
 window.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
     app.dataset.rail = app.dataset.rail === 'closed' ? 'open' : 'closed';
@@ -126,10 +132,34 @@ window.addEventListener('keydown', (event) => {
 // Exemple : const MATTERPORT_URL = 'https://my.matterport.com/show/?m=XXXXXXXXXXX&play=1&qs=1';
 const MATTERPORT_URL = '';
 const frame = document.querySelector('.matterport-frame');
+const minimumLoaderDuration = 4600;
+const loaderStartedAt = performance.now();
+let loaderDismissed = false;
+
+function dismissLoader() {
+  if (loaderDismissed) return;
+  loaderDismissed = true;
+  const elapsed = performance.now() - loaderStartedAt;
+  const remaining = Math.max(0, minimumLoaderDuration - elapsed);
+
+  window.setTimeout(() => {
+    document.body.classList.remove('is-loading');
+    document.body.classList.add('is-ready');
+  }, remaining);
+}
 
 if (MATTERPORT_URL && frame) {
   frame.src = MATTERPORT_URL;
-  frame.style.opacity = '1';
-  frame.style.pointerEvents = 'auto';
-  document.querySelector('.matterport-fallback')?.remove();
+  frame.addEventListener('load', () => {
+    frame.style.opacity = '1';
+    frame.style.pointerEvents = 'auto';
+    document.querySelector('.matterport-fallback')?.remove();
+    dismissLoader();
+  }, { once: true });
+
+  window.setTimeout(dismissLoader, 9000);
+} else {
+  window.addEventListener('load', dismissLoader, { once: true });
 }
+
+window.setTimeout(dismissLoader, 9000);

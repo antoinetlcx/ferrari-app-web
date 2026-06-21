@@ -8,9 +8,28 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="is-loading">
+  <div class="f40-loader" role="status" aria-live="polite" aria-label="Chargement de l'expérience Ferrari">
+    <div class="f40-loader-stage" aria-hidden="true">
+      <div class="f40-exploded"></div>
+      <div class="f40-piece f40-piece-1"></div>
+      <div class="f40-piece f40-piece-2"></div>
+      <div class="f40-piece f40-piece-3"></div>
+      <div class="f40-piece f40-piece-4"></div>
+      <div class="f40-piece f40-piece-5"></div>
+      <div class="f40-assembled"></div>
+      <div class="f40-scan"></div>
+    </div>
+    <div class="f40-loader-copy">
+      <span>Ferrari F40</span>
+      <strong>Assemblage en cours</strong>
+      <div class="f40-progress"><i></i></div>
+    </div>
+  </div>
+
   <div class="app-shell" data-panel="experience" data-rail="open">
     <div class="tour-layer" aria-hidden="true">
       <!-- Remplacer le src par le lien Matterport client dès qu’il est disponible. -->
@@ -259,20 +278,11 @@
       <i>→</i>
     </a>
 
-    <button class="advisor" type="button" aria-label="Contacter votre conseiller Ferrari">
-      <span class="advisor-dot"></span>
-      <strong>Votre conseiller Ferrari</strong>
-      <em>Disponible</em>
+    <button class="configure-cover" type="button" aria-label="Configurer votre Ferrari">
+      <span class="configure-label">Configurer</span>
+      <i class="bi bi-gear-wide-connected" aria-hidden="true"></i>
+      <span class="configure-signature">BY <strong>PRODECTA</strong></span>
     </button>
-
-    <div class="drive-controls" aria-label="Contrôles de visite">
-      <button type="button">↑</button>
-      <button type="button">←</button>
-      <button type="button" class="control-core">◌</button>
-      <button type="button">→</button>
-      <button type="button">↓</button>
-      <button type="button" class="next-control">»</button>
-    </div>
 
     <div class="mobile-sheet" aria-label="Menu mobile">
       <button class="sheet-handle" type="button"><span></span></button>
@@ -299,7 +309,6 @@
       <a href="mailto:contact@prodecta.fr" class="mobile-cta">Réserver un essai</a>
     </div>
 
-    <div class="prodecta-signature">BY <strong>PRODECTA</strong></div>
   </div>
 
   <script src="script.js"></script>

@@ -34,6 +34,199 @@ body {
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+body.is-loading .app-shell {
+  visibility: hidden;
+}
+
+.f40-loader {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #000;
+  opacity: 1;
+  transition: opacity 0.8s var(--ease), visibility 0.8s var(--ease);
+}
+
+.f40-loader::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 62%, rgba(185, 8, 18, 0.13), transparent 48%);
+  pointer-events: none;
+}
+
+body.is-ready .f40-loader {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.f40-loader-stage {
+  position: relative;
+  width: min(91vw, 1500px);
+  aspect-ratio: 1672 / 941;
+  transform: translateY(-2vh);
+}
+
+.f40-exploded,
+.f40-piece,
+.f40-assembled,
+.f40-scan {
+  position: absolute;
+  inset: 0;
+}
+
+.f40-exploded,
+.f40-piece,
+.f40-assembled {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.f40-exploded {
+  background-image: url("assets/f40-exploded.webp");
+  animation: explodedFade 4.6s var(--ease) both;
+}
+
+.f40-piece {
+  background-image: url("assets/f40-assembled.webp");
+  opacity: 0;
+  filter: saturate(1.05) drop-shadow(0 0 18px rgba(226, 13, 24, 0.2));
+  animation: assemblePiece 4.6s var(--ease) both;
+}
+
+.f40-piece-1 {
+  clip-path: polygon(0 0, 34% 0, 26% 100%, 0 100%);
+  --piece-x: -18vw;
+  --piece-y: 9vh;
+}
+
+.f40-piece-2 {
+  clip-path: polygon(24% 0, 51% 0, 48% 100%, 20% 100%);
+  --piece-x: -9vw;
+  --piece-y: -12vh;
+  animation-delay: 0.12s;
+}
+
+.f40-piece-3 {
+  clip-path: polygon(45% 0, 70% 0, 76% 100%, 45% 100%);
+  --piece-x: 2vw;
+  --piece-y: 14vh;
+  animation-delay: 0.2s;
+}
+
+.f40-piece-4 {
+  clip-path: polygon(66% 0, 89% 0, 94% 100%, 72% 100%);
+  --piece-x: 11vw;
+  --piece-y: -10vh;
+  animation-delay: 0.08s;
+}
+
+.f40-piece-5 {
+  clip-path: polygon(84% 0, 100% 0, 100% 100%, 90% 100%);
+  --piece-x: 20vw;
+  --piece-y: 8vh;
+  animation-delay: 0.16s;
+}
+
+.f40-assembled {
+  background-image: url("assets/f40-assembled.webp");
+  opacity: 0;
+  animation: assembledReveal 4.6s var(--ease) both;
+}
+
+.f40-scan {
+  width: 14%;
+  left: -18%;
+  right: auto;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), rgba(226, 13, 24, 0.42), transparent);
+  filter: blur(10px);
+  transform: skewX(-16deg);
+  opacity: 0;
+  animation: f40Scan 4.6s ease-in-out both;
+}
+
+.f40-loader-copy {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(34px, 7vh, 78px);
+  width: min(420px, calc(100vw - 48px));
+  transform: translateX(-50%);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.f40-loader-copy > span {
+  display: block;
+  margin-bottom: 9px;
+  color: var(--rosso-bright);
+  font-family: Oswald, Inter, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.34em;
+}
+
+.f40-loader-copy > strong {
+  display: block;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+}
+
+.f40-progress {
+  height: 2px;
+  margin-top: 18px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.f40-progress i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--rosso-deep), var(--rosso-bright));
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: loadingProgress 4.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes explodedFade {
+  0%, 34% { opacity: 1; transform: scale(1); filter: brightness(0.92); }
+  58% { opacity: 0.42; transform: scale(0.99); filter: brightness(0.62) blur(1px); }
+  76%, 100% { opacity: 0; transform: scale(0.985); filter: brightness(0.35) blur(5px); }
+}
+
+@keyframes assemblePiece {
+  0%, 29% { opacity: 0; transform: translate(var(--piece-x), var(--piece-y)) scale(1.06); }
+  42% { opacity: 0.78; }
+  72%, 88% { opacity: 1; transform: translate(0, 0) scale(1); }
+  100% { opacity: 0; transform: translate(0, 0) scale(1); }
+}
+
+@keyframes assembledReveal {
+  0%, 67% { opacity: 0; filter: brightness(0.56); }
+  82%, 100% { opacity: 1; filter: brightness(1); }
+}
+
+@keyframes f40Scan {
+  0%, 32% { left: -18%; opacity: 0; }
+  40% { opacity: 0.9; }
+  77% { left: 104%; opacity: 0.8; }
+  82%, 100% { left: 112%; opacity: 0; }
+}
+
+@keyframes loadingProgress {
+  0% { transform: scaleX(0); }
+  28% { transform: scaleX(0.22); }
+  68% { transform: scaleX(0.78); }
+  100% { transform: scaleX(1); }
+}
+
 button,
 a {
   font-family: inherit;
@@ -1130,103 +1323,75 @@ button {
   font-size: 24px;
 }
 
-.advisor {
+.configure-cover {
   position: absolute;
-  z-index: 4;
-  right: clamp(28px, 4vw, 58px);
-  bottom: clamp(74px, 11vh, 124px);
+  z-index: 6;
+  right: clamp(18px, 3.2vw, 52px);
+  bottom: clamp(18px, 3.2vh, 34px);
   display: grid;
-  grid-template-columns: auto 1fr;
-  column-gap: 12px;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
+  column-gap: 28px;
   align-items: center;
-  min-height: 68px;
-  padding: 12px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 18px;
-  background: rgba(7, 8, 10, 0.86);
-  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.34);
-  backdrop-filter: blur(18px);
+  width: clamp(330px, 28vw, 430px);
+  min-height: 128px;
+  padding: 24px 28px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 22px;
+  background: rgba(11, 11, 12, 0.98);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.58), inset 0 1px rgba(255, 255, 255, 0.05);
   cursor: pointer;
-  transition: transform 0.4s var(--ease), border-color 0.4s var(--ease);
+  overflow: hidden;
+  transition: transform 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
 
-.advisor:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255, 211, 61, 0.4);
+.configure-cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(118deg, transparent 0 48%, rgba(255, 255, 255, 0.035) 49% 50%, transparent 51%);
 }
 
-.advisor-dot {
-  grid-row: span 2;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--modena);
-  box-shadow: 0 0 0 7px rgba(255, 211, 61, 0.13), 0 0 24px rgba(255, 211, 61, 0.45);
+.configure-cover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(226, 13, 24, 0.55);
+  box-shadow: 0 30px 84px rgba(0, 0, 0, 0.68), 0 0 34px rgba(185, 8, 18, 0.16);
 }
 
-.advisor strong {
-  font-size: 12px;
-  letter-spacing: 0.12em;
+.configure-label {
+  position: relative;
+  z-index: 1;
+  text-align: left;
+  font-size: clamp(20px, 1.45vw, 27px);
+  font-weight: 500;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
 }
 
-.advisor em {
-  color: rgba(255, 255, 255, 0.52);
-  font-size: 11px;
-  font-style: normal;
+.configure-cover > .bi {
+  position: relative;
+  z-index: 1;
+  color: var(--rosso-bright);
+  font-size: 38px;
+  transition: transform 0.6s var(--ease);
 }
 
-.drive-controls {
-  position: absolute;
-  z-index: 3;
-  left: 50%;
-  bottom: clamp(28px, 5vh, 58px);
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  padding: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  border-radius: 999px;
-  background: rgba(7, 8, 10, 0.72);
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.32);
-  backdrop-filter: blur(16px);
+.configure-cover:hover > .bi {
+  transform: rotate(70deg);
 }
 
-.drive-controls button {
-  width: 42px;
-  height: 42px;
-  border: 0;
-  border-radius: 50%;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.78);
-  cursor: pointer;
-  transition: background 0.34s var(--ease), color 0.34s var(--ease), transform 0.34s var(--ease);
-}
-
-.drive-controls button:hover,
-.drive-controls .next-control {
-  background: rgba(255, 255, 255, 0.13);
-  color: #fff;
-  transform: translateY(-1px);
-}
-
-.control-core {
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
-}
-
-.prodecta-signature {
-  position: absolute;
-  z-index: 3;
-  right: clamp(32px, 4vw, 64px);
-  bottom: clamp(28px, 5vh, 58px);
+.configure-signature {
+  position: relative;
+  z-index: 1;
+  grid-column: 1 / -1;
+  justify-self: end;
   color: rgba(255, 255, 255, 0.72);
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 800;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.3em;
 }
 
-.prodecta-signature strong {
+.configure-signature strong {
   color: var(--rosso-bright);
 }
 
@@ -1260,8 +1425,7 @@ button {
   .brand-rail,
   .top-dock,
   .main-cta,
-  .advisor,
-  .drive-controls,
+  .configure-cover,
   .rail-open {
     display: none !important;
   }
@@ -1460,12 +1624,13 @@ button {
     box-shadow: 0 18px 42px rgba(184, 8, 18, 0.38);
   }
 
-  .prodecta-signature {
-    top: 18px;
-    right: 18px;
-    bottom: auto;
-    font-size: 9px;
-    color: rgba(255,255,255,0.68);
+  .f40-loader-stage {
+    width: 128vw;
+    transform: translateY(-4vh);
+  }
+
+  .f40-loader-copy {
+    bottom: 52px;
   }
 }
 
